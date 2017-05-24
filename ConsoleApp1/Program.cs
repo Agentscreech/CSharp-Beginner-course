@@ -116,8 +116,7 @@ namespace CSharpBeginner
         public static void Exercise7()
         {
             Console.WriteLine("what's the factorial?");
-            int num;
-            if (int.TryParse(Console.ReadLine(), out num))
+            if (int.TryParse(Console.ReadLine(), out int num))
             {
                 BigInteger sum = num;
                 while (num > 1)
@@ -177,9 +176,121 @@ namespace CSharpBeginner
             }
             Console.WriteLine("The largest one was " + max);
         }
-        public static void Test()
+        public static void Exercise10()
         {
-            var numbners = new List<int>();
+            Console.WriteLine("Enter a name");
+            var names = new List<string>();
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (input == "")
+                {
+                    break;
+                }
+                else
+                {
+                    names.Add(input);
+                }
+                Console.WriteLine("Enter another name");
+            }
+            if (names.Count > 2)
+            {
+                var others = names.Count - 2;
+                Console.WriteLine(names[0]+", "+names[1]+ " and "+others+" like your post"  );
+
+            }
+            else if (names.Count == 2)
+            {
+                Console.WriteLine(names[0]+ " and "+names[1]+" like your post");
+            }
+            else if (names.Count == 1)
+            {
+                Console.WriteLine(names[0] + " likes your post");
+            }
+            
+        }
+        public static void Exercise11()
+        {
+            Console.WriteLine("Enter your name");
+            var input = Console.ReadLine();
+            var array = new char[input.Length];
+            for (var i = input.Length; i >0; i--)
+            {
+                array[input.Length - i] = input[i - 1];
+            }
+            var reversed = new string(array);
+            Console.WriteLine(reversed);
+        }
+        public static void Exercise12()
+        {
+            var numbers = new List<int>();
+            while (numbers.Count < 6)
+            {
+                Console.WriteLine("enter a unique number");
+                var input = Convert.ToInt32(Console.ReadLine());
+                if (numbers.Contains(input))
+                {
+                    Console.WriteLine("that's been done");
+                }
+                else
+                {
+                    numbers.Add(input);
+                }
+            }
+            numbers.Sort();
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            
+        }
+        public static void Exercise13()
+        {
+            var numbers = new List<int>();
+            var unique = new List<int>();
+            while (true)
+            {
+                Console.WriteLine("Enter a number (or type Quit to exit)");
+                var input = Console.ReadLine();
+                if (input.ToLower() == "quit")
+                {
+                    break;
+                }
+                else
+                {
+                    var number = Convert.ToInt32(input);
+                    if (!unique.Contains(number))
+                    {
+                        unique.Add(number);
+                    }
+                }
+            }
+            foreach (var num in unique)
+            {
+                Console.WriteLine(num);
+            }
+        }
+        public static void Exercise14()
+        {
+            Console.WriteLine("Give me a list of 5 or more numbers separated by commas (no spaces)");
+            var input = Console.ReadLine();
+            var elements = input.Split(',');
+            while  (elements.Length < 5)
+            {
+                Console.WriteLine("Invalid List, try again");
+                input = Console.ReadLine();
+                elements = input.Split(',');
+            }
+            var numbers = new List<int>(); 
+            foreach (var number in elements)
+            {
+                numbers.Add(Convert.ToInt32(number));
+            }
+            numbers.Sort();
+            for (var i = 0; i < 3; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
         }
         static void Main(string[] args)
         {
@@ -193,7 +304,11 @@ namespace CSharpBeginner
             Exercise7();
             Exercise8();
             Exercise9();
-
+            Exercise10();
+            Exercise11();
+            Exercise12();
+            Exercise13();
+            Exercise14();
         }
     }
 }
